@@ -470,6 +470,7 @@ async function runQuery(
         'NotebookEdit',
         'mcp__nanoclaw__*',
         'mcp__lmstudio__*',
+        'mcp__gmail__*',
       ],
       env: sdkEnv,
       permissionMode: 'bypassPermissions',
@@ -491,6 +492,10 @@ async function runQuery(
           env: {
             ...(process.env.LMSTUDIO_HOST ? { LMSTUDIO_HOST: process.env.LMSTUDIO_HOST } : {}),
           },
+        },
+        gmail: {
+          command: 'npx',
+          args: ['-y', '@gongrzhe/server-gmail-autoauth-mcp'],
         },
       },
       hooks: {
