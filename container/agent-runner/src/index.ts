@@ -469,6 +469,7 @@ async function runQuery(
         'Skill',
         'NotebookEdit',
         'mcp__nanoclaw__*',
+        'mcp__lmstudio__*',
       ],
       env: sdkEnv,
       permissionMode: 'bypassPermissions',
@@ -482,6 +483,13 @@ async function runQuery(
             NANOCLAW_CHAT_JID: containerInput.chatJid,
             NANOCLAW_GROUP_FOLDER: containerInput.groupFolder,
             NANOCLAW_IS_MAIN: containerInput.isMain ? '1' : '0',
+          },
+        },
+        lmstudio: {
+          command: 'node',
+          args: [path.join(path.dirname(fileURLToPath(import.meta.url)), 'lmstudio-mcp-stdio.js')],
+          env: {
+            ...(process.env.LMSTUDIO_HOST ? { LMSTUDIO_HOST: process.env.LMSTUDIO_HOST } : {}),
           },
         },
       },
