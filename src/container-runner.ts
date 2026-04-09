@@ -196,6 +196,16 @@ function buildVolumeMounts(
     });
   }
 
+  // Enphase credentials directory (for Enphase MCP inside the container)
+  const enphaseDir = path.join(homeDir, '.enphase-mcp');
+  if (fs.existsSync(enphaseDir)) {
+    mounts.push({
+      hostPath: enphaseDir,
+      containerPath: '/home/node/.enphase-mcp',
+      readonly: false, // MCP may need to persist refreshed tokens
+    });
+  }
+
   // Per-group IPC namespace: each group gets its own IPC directory
   // This prevents cross-group privilege escalation via IPC
   const groupIpcDir = resolveGroupIpcPath(group.folder);
