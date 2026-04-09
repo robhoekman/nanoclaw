@@ -471,6 +471,7 @@ async function runQuery(
         'mcp__nanoclaw__*',
         'mcp__lmstudio__*',
         'mcp__gmail__*',
+        'mcp__enphase__*',
       ],
       env: sdkEnv,
       permissionMode: 'bypassPermissions',
@@ -496,6 +497,10 @@ async function runQuery(
         gmail: {
           command: 'npx',
           args: ['-y', '@gongrzhe/server-gmail-autoauth-mcp'],
+        },
+        enphase: {
+          command: 'node',
+          args: [path.join(path.dirname(fileURLToPath(import.meta.url)), 'enphase-mcp-stdio.js')],
         },
       },
       hooks: {
