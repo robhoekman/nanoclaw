@@ -216,6 +216,16 @@ function buildVolumeMounts(
     });
   }
 
+  // Universal Media Server credentials directory (for UMS MCP inside the container)
+  const umsDir = path.join(homeDir, '.ums-mcp');
+  if (fs.existsSync(umsDir)) {
+    mounts.push({
+      hostPath: umsDir,
+      containerPath: '/home/node/.ums-mcp',
+      readonly: false, // MCP may need to persist refreshed JWT tokens
+    });
+  }
+
   // Per-group IPC namespace: each group gets its own IPC directory
   // This prevents cross-group privilege escalation via IPC
   const groupIpcDir = resolveGroupIpcPath(group.folder);

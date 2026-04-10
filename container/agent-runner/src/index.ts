@@ -473,6 +473,7 @@ async function runQuery(
         'mcp__gmail__*',
         'mcp__enphase__*',
         'mcp__calendar__*',
+        'mcp__ums__*',
       ],
       env: sdkEnv,
       permissionMode: 'bypassPermissions',
@@ -506,6 +507,10 @@ async function runQuery(
         calendar: {
           command: 'node',
           args: [path.join(path.dirname(fileURLToPath(import.meta.url)), 'calendar-mcp-stdio.js')],
+        },
+        ums: {
+          command: 'node',
+          args: [path.join(path.dirname(fileURLToPath(import.meta.url)), 'ums-mcp-stdio.js')],
         },
       },
       hooks: {
