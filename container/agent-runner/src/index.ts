@@ -472,6 +472,7 @@ async function runQuery(
         'mcp__lmstudio__*',
         'mcp__gmail__*',
         'mcp__enphase__*',
+        'mcp__calendar__*',
       ],
       env: sdkEnv,
       permissionMode: 'bypassPermissions',
@@ -501,6 +502,10 @@ async function runQuery(
         enphase: {
           command: 'node',
           args: [path.join(path.dirname(fileURLToPath(import.meta.url)), 'enphase-mcp-stdio.js')],
+        },
+        calendar: {
+          command: 'node',
+          args: [path.join(path.dirname(fileURLToPath(import.meta.url)), 'calendar-mcp-stdio.js')],
         },
       },
       hooks: {
